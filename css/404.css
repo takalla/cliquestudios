@@ -1,0 +1,188 @@
+/* css/404.css
+   Clique Studios — 404 / catch-all page styles.
+
+   Colors below are PLACEHOLDERS (hex only, per standards) — swap them
+   for Clique's real brand hex codes once the branding package exists.
+   Search this file for "placeholder" to find every color that needs
+   revisiting.
+--------------------------------------------------------------------- */
+
+/* ---------- Reset ---------- */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+/* ---------- Base / type selectors ---------- */
+html,
+body {
+  height: 100%;
+}
+
+body {
+  font-family: -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  background-color: #14151a; /* placeholder — near-black background */
+  color: #f4f4f6; /* placeholder — off-white text */
+  line-height: 1.5;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+button {
+  font-family: inherit;
+}
+
+/* ---------- Header ---------- */
+.error-page__header {
+  display: flex;
+  justify-content: center;
+  padding: 24px 16px 0;
+}
+
+.error-page__wordmark {
+  font-size: 14px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: #8b8d98; /* placeholder — muted gray */
+}
+
+/* ---------- Main / card (Block: error-page) ---------- */
+.error-page {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 32px 16px;
+}
+
+.error-page__card {
+  width: 100%;
+  max-width: 560px;
+  background-color: #1f2128; /* placeholder — card surface */
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 16px;
+  padding: 40px 32px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: 16px;
+}
+
+.error-page__eyebrow {
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: #ff6a3d; /* placeholder — accent color */
+}
+
+.error-page__heading {
+  font-size: 28px;
+  font-weight: 800;
+  line-height: 1.2;
+}
+
+.error-page__subheading {
+  font-size: 16px;
+  color: #c7c8d1; /* placeholder — secondary text */
+  max-width: 440px;
+}
+
+.error-page__button {
+  margin-top: 8px;
+  padding: 14px 28px;
+  font-size: 15px;
+  font-weight: 700;
+  color: #14151a; /* placeholder — dark text on accent button */
+  background-color: #ff6a3d; /* placeholder — accent color, matches eyebrow */
+  border: none;
+  border-radius: 999px;
+  cursor: pointer;
+  transition: transform 0.15s ease, background-color 0.15s ease;
+}
+
+.error-page__button:hover {
+  background-color: #ff8560; /* placeholder — lighter accent on hover */
+  transform: translateY(-1px);
+}
+
+.error-page__button:focus-visible {
+  outline: 3px solid #ff8560; /* placeholder */
+  outline-offset: 2px;
+}
+
+.error-page__button--clicked {
+  background-color: #3d9a5c; /* placeholder — success green */
+  color: #f4f4f6; /* placeholder */
+  cursor: default;
+  transform: none;
+}
+
+.error-page__footnote {
+  font-size: 13px;
+  color: #8b8d98; /* placeholder — muted gray, matches wordmark */
+  max-width: 400px;
+}
+
+/* ---------- Footer ---------- */
+.error-page__footer {
+  display: flex;
+  justify-content: center;
+  padding: 0 16px 24px;
+}
+
+.error-page__footer-text {
+  font-size: 12px;
+  color: #5c5e68; /* placeholder — dimmer gray */
+}
+
+/* ---------- Responsive breakpoints ---------- */
+@media (max-width: 480px) {
+  .error-page__card {
+    padding: 28px 20px;
+    border-radius: 12px;
+  }
+
+  .error-page__heading {
+    font-size: 22px;
+  }
+
+  .error-page__subheading {
+    font-size: 15px;
+  }
+
+  .error-page__button {
+    width: 100%;
+    padding: 14px 20px;
+  }
+}
+
+@media (min-width: 768px) {
+  .error-page__heading {
+    font-size: 32px;
+  }
+
+  .error-page__card {
+    padding: 48px 40px;
+  }
+}
+
+@media (min-width: 1200px) {
+  .error-page__card {
+    max-width: 620px;
+  }
+
+  .error-page__heading {
+    font-size: 36px;
+  }
+
+  .error-page__subheading {
+    font-size: 17px;
+  }
+}
