@@ -23,8 +23,7 @@
       event_type: eventType,
       path: window.location.pathname + window.location.search,
       referrer: document.referrer || "direct-or-unknown",
-      user_agent: navigator.userAgent,
-      occurred_at: new Date().toISOString()
+      user_agent: navigator.userAgent
     };
   }
 
