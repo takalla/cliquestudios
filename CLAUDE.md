@@ -26,6 +26,20 @@ a PR with `create_pull_request`, then `merge_pull_request`) worked fine
 and wasn't blocked — use that path for any future `staging` → `main`
 merge instead of local git commands.
 
+**Use a regular merge commit for `staging` → `main`, not squash-merge.**
+On 2026-08-27, PR #4 got squash-merged (via GitHub's dashboard), which
+put a brand-new commit on `main` with the same content as `staging`'s
+real commit but no shared history. The very next `staging` → `main`
+attempt then couldn't auto-merge, even though nothing had actually
+changed — git just couldn't tell "main is behind" from "these
+diverged." Squash-merge itself is fine for a one-off feature branch
+that gets deleted afterward; it's specifically wrong for a long-lived
+branch pair like this one that keeps getting merged forward repeatedly.
+Fixed by merging `main` back into `staging` (confirmed zero content
+diff first) and merging forward again with a regular merge. When
+merging via the GitHub UI, use the "Create a merge commit" option
+(not "Squash and merge"); via the API, pass `merge_method: "merge"`.
+
 ## What this is
 
 Clique Studios' public marketing website (currently just a placeholder
