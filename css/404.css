@@ -61,6 +61,8 @@ button {
 }
 
 .error-page__card {
+  position: relative;
+  z-index: 1;
   width: 100%;
   max-width: 560px;
   background-color: #1f2128; /* placeholder — card surface */
@@ -94,42 +96,6 @@ button {
   max-width: 440px;
 }
 
-.error-page__button {
-  margin-top: 8px;
-  padding: 14px 28px;
-  font-size: 15px;
-  font-weight: 700;
-  color: #14151a; /* placeholder — dark text on accent button */
-  background-color: #4f7cff; /* placeholder — accent color, matches eyebrow */
-  border: none;
-  border-radius: 999px;
-  cursor: pointer;
-  transition: transform 0.15s ease, background-color 0.15s ease;
-}
-
-.error-page__button:hover {
-  background-color: #7295ff; /* placeholder — lighter accent on hover */
-  transform: translateY(-1px);
-}
-
-.error-page__button:focus-visible {
-  outline: 3px solid #7295ff; /* placeholder */
-  outline-offset: 2px;
-}
-
-.error-page__button--clicked {
-  background-color: #3d9a5c; /* placeholder — success green */
-  color: #f4f4f6; /* placeholder */
-  cursor: default;
-  transform: none;
-}
-
-.error-page__footnote {
-  font-size: 13px;
-  color: #8b8d98; /* placeholder — muted gray, matches wordmark */
-  max-width: 400px;
-}
-
 .error-page__home-link {
   font-size: 13px;
   font-weight: 700;
@@ -139,6 +105,236 @@ button {
 
 .error-page__home-link:hover {
   text-decoration: underline;
+}
+
+/* ---------- Destruction sequence (Elements: countdown, flames, ashfall,
+   ash-home-link — plays once on load, over the card above) ---------- */
+.error-page__countdown {
+  position: fixed;
+  inset: 0;
+  z-index: 3;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  pointer-events: none;
+}
+
+.error-page__countdown-line {
+  position: absolute;
+  padding: 0 16px;
+  font-size: 32px;
+  font-weight: 800;
+  text-align: center;
+  color: #ffb347; /* placeholder — warm ember amber */
+  text-shadow: 0 0 24px rgba(255, 122, 61, 0.6);
+  opacity: 0;
+  animation: error-page-countdown-flash 0.9s ease-out forwards;
+}
+
+.error-page__countdown-line--3 {
+  animation-delay: 1.4s;
+}
+
+.error-page__countdown-line--2 {
+  animation-delay: 2.3s;
+}
+
+.error-page__countdown-line--1 {
+  animation-delay: 3.2s;
+}
+
+.error-page__flames {
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 100%;
+  z-index: 2;
+  pointer-events: none;
+  transform: scaleY(0);
+  transform-origin: bottom;
+  background:
+    radial-gradient(ellipse at 20% 100%, rgba(255, 214, 100, 0.9) 0%, rgba(255, 214, 100, 0) 40%),
+    radial-gradient(ellipse at 75% 100%, rgba(255, 214, 100, 0.85) 0%, rgba(255, 214, 100, 0) 35%),
+    linear-gradient(to top, #ff3d1f 0%, #ff7a3d 35%, #ffb347 60%, rgba(255, 179, 71, 0) 100%);
+  clip-path: polygon(
+    0% 100%, 0% 40%, 6% 30%, 12% 42%, 18% 20%, 24% 38%, 30% 15%,
+    36% 34%, 42% 10%, 48% 30%, 54% 18%, 60% 36%, 66% 12%,
+    72% 32%, 78% 22%, 84% 40%, 90% 16%, 96% 34%, 100% 24%, 100% 100%
+  );
+  animation: error-page-flames-rise 1.8s ease-in forwards;
+  animation-delay: 4.2s;
+}
+
+.error-page__ashfall {
+  position: fixed;
+  inset: 0;
+  z-index: 4;
+  background-color: #0a0a0c; /* placeholder — near-black ash */
+  opacity: 0;
+  pointer-events: none;
+  animation: error-page-ashfall-in 1s ease-out forwards;
+  animation-delay: 5.9s;
+}
+
+.error-page__ash-speck {
+  position: absolute;
+  width: 3px;
+  height: 3px;
+  border-radius: 50%;
+  background-color: rgba(180, 180, 190, 0.6); /* placeholder — drifting ash */
+  opacity: 0;
+  animation: error-page-ash-drift 6s ease-in-out infinite;
+}
+
+.error-page__ash-speck--1 {
+  top: 70%;
+  left: 12%;
+  animation-delay: 6.1s;
+}
+
+.error-page__ash-speck--2 {
+  top: 55%;
+  left: 30%;
+  animation-delay: 6.6s;
+}
+
+.error-page__ash-speck--3 {
+  top: 78%;
+  left: 48%;
+  animation-delay: 6.3s;
+}
+
+.error-page__ash-speck--4 {
+  top: 60%;
+  left: 66%;
+  animation-delay: 6.9s;
+}
+
+.error-page__ash-speck--5 {
+  top: 82%;
+  left: 82%;
+  animation-delay: 6.4s;
+}
+
+.error-page__ash-speck--6 {
+  top: 40%;
+  left: 90%;
+  animation-delay: 7.1s;
+}
+
+.error-page__ash-home-link {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  z-index: 5;
+  padding: 14px 32px;
+  font-size: 15px;
+  font-weight: 700;
+  color: #14151a; /* placeholder — dark text on ember button */
+  background-color: #ffb347; /* placeholder — ember amber, matches countdown */
+  border-radius: 999px;
+  text-decoration: none;
+  opacity: 0;
+  pointer-events: none;
+  animation: error-page-ash-home-in 1s ease-out forwards;
+  animation-delay: 6.6s;
+}
+
+.error-page__ash-home-link:hover {
+  background-color: #ffc670; /* placeholder — lighter ember on hover */
+}
+
+@keyframes error-page-countdown-flash {
+  0% {
+    opacity: 0;
+    transform: scale(0.7);
+  }
+  15% {
+    opacity: 1;
+    transform: scale(1.1);
+  }
+  35% {
+    opacity: 1;
+    transform: scale(1);
+  }
+  85% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+    transform: scale(0.9);
+  }
+}
+
+@keyframes error-page-flames-rise {
+  0% {
+    transform: scaleY(0);
+  }
+  55% {
+    transform: scaleY(1.02);
+  }
+  70% {
+    transform: scaleY(0.98);
+  }
+  85% {
+    transform: scaleY(1.01);
+  }
+  100% {
+    transform: scaleY(1);
+  }
+}
+
+@keyframes error-page-ashfall-in {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 0.97;
+  }
+}
+
+@keyframes error-page-ash-drift {
+  0% {
+    opacity: 0;
+    transform: translateY(0);
+  }
+  10% {
+    opacity: 0.8;
+  }
+  50% {
+    opacity: 0.4;
+    transform: translateY(-40px);
+  }
+  100% {
+    opacity: 0;
+    transform: translateY(-90px);
+  }
+}
+
+@keyframes error-page-ash-home-in {
+  0%,
+  99% {
+    opacity: 0;
+    transform: translate(-50%, -50%) scale(0.85);
+    pointer-events: none;
+  }
+  100% {
+    opacity: 1;
+    transform: translate(-50%, -50%) scale(1);
+    pointer-events: auto;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .error-page__countdown-line,
+  .error-page__flames,
+  .error-page__ashfall,
+  .error-page__ash-speck,
+  .error-page__ash-home-link {
+    animation: none;
+    opacity: 0;
+  }
 }
 
 /* ---------- Footer ---------- */
@@ -168,9 +364,13 @@ button {
     font-size: 15px;
   }
 
-  .error-page__button {
-    width: 100%;
-    padding: 14px 20px;
+  .error-page__countdown-line {
+    font-size: 22px;
+  }
+
+  .error-page__ash-home-link {
+    padding: 12px 24px;
+    font-size: 14px;
   }
 }
 

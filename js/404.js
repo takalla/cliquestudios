@@ -1,12 +1,9 @@
 // js/404.js
 // -----------------------------------------------------------------------
-// Behavior for the Clique Studios 404 / catch-all page:
-//   1. On load, logs a "pageview" event — which path was requested and
-//      what URL (if any) referred the visitor here. This is how you spot
-//      a dead link somewhere still sending people to a page that no
-//      longer exists.
-//   2. On button click, logs a "button_click" event and gives the
-//      visitor visible feedback that their click landed.
+// Behavior for the Clique Studios 404 / catch-all page: on load, logs a
+// "pageview" event — which path was requested and what URL (if any)
+// referred the visitor here. This is how you spot a dead link somewhere
+// still sending people to a page that no longer exists.
 //
 // Logging is inert until js/config.js has real Supabase credentials —
 // see the comment block in that file. Nothing here breaks the page if
@@ -58,16 +55,5 @@
     if (yearEl) {
       yearEl.textContent = String(new Date().getFullYear());
     }
-
-    var button = document.querySelector(".error-page__button");
-    if (!button) return;
-
-    button.addEventListener("click", function () {
-      logEvent("button_click");
-
-      button.textContent = "Got it — we'll go fix that.";
-      button.setAttribute("disabled", "disabled");
-      button.classList.add("error-page__button--clicked");
-    });
   });
 })();
