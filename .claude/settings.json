@@ -1,0 +1,15 @@
+{
+  "hooks": {
+    "PostToolUse": [
+      {
+        "matcher": "Write|Edit",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "jq -r '.tool_input.file_path // .tool_response.filePath // empty' | { read -r f; case \"$f\" in *.html|*.css|*.js) jq -n --arg f \"$f\" '{hookSpecificOutput:{hookEventName:\"PostToolUse\", additionalContext: (\"Reminder: \" + $f + \" is front-end code. Check it against fes-coding-standards before finishing this turn: external CSS only (no inline style/<style>), hex/rgba colors only, BEM class names, box-sizing:border-box reset, responsive breakpoints at 480/768/1200px, semantic HTML with paired label/for, lucide icons not emoji/hand-rolled SVG.\")}}' ;; esac; }"
+          }
+        ]
+      }
+    ]
+  }
+}
