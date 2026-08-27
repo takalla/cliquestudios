@@ -1,0 +1,11 @@
+{
+  // "name" must exactly match the Worker's name in the Cloudflare dashboard
+  // (Workers & Pages > jades-tales), or Workers Builds will fail.
+  "name": "jades-tales",
+  "compatibility_date": "2026-08-27",
+  "assets": {
+    // This is a plain static site (no build step) -- index.html, 404.html,
+    // css/, js/ all live at the repo root, so serve straight from here.
+    "directory": "."
+  }
+}
