@@ -50,9 +50,21 @@ create policy "Allow public inserts on error_404_site_pings"
 -- which bypasses RLS, or via a service_role key you keep server-side —
 -- never put the service_role key in this public repo.
 
--- Sample query for the dashboard once data starts coming in:
---   select path, referrer, count(*) as hits
---   from error_404_site_pings
---   where event_type = 'pageview'
---   group by path, referrer
---   order by hits desc;
+-- Reporting view: pairs each dead path with the referrer that sent
+-- visitors there, with pageview/click counts and first/last seen times.
+-- Query this instead of the raw table for day-to-day "what's broken":
+--   select * from dead_link_report;
+create or replace view public.dead_link_report as
+select
+  path,
+  referrer,
+  count(*) filter (where event_type = 'pageview') as pageviews,
+  count(*) filter (where event_type = 'button_click') as button_clicks,
+  min(created_at) as first_seen,
+  max(created_at) as last_seen
+from public.error_404_site_pings
+group by path, referrer
+order by pageviews desc;
+
+comment on view public.dead_link_report is
+  'Pairs each 404''d path with the referrer that sent visitors there, aggregated from error_404_site_pings. One row per (path, referrer) combo, with pageview/click counts and first/last seen timestamps -- read this top-to-bottom to see which dead links get the most traffic and where they''re being linked from, so you know exactly what to go fix.';
