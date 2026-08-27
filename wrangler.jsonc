@@ -1,7 +1,7 @@
 {
   // "name" must exactly match the Worker's name in the Cloudflare dashboard
-  // (Workers & Pages > jades-tales), or Workers Builds will fail.
-  "name": "jades-tales",
+  // (Workers & Pages > cliquestudios), or Workers Builds will fail.
+  "name": "cliquestudios",
   "compatibility_date": "2026-08-27",
   "assets": {
     // This is a plain static site (no build step) -- index.html, 404.html,
