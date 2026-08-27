@@ -45,7 +45,13 @@ Done:
   actually enforces the table's RLS instead of bypassing it as the
   view's owner.
 - `wrangler.jsonc` / `.assetsignore` added so Cloudflare Workers Builds can
-  actually deploy this static site
+  actually deploy this static site. `assets.not_found_handling` set
+  explicitly to `"404-page"` (not automatic for Workers static assets the
+  way it was on classic Cloudflare Pages).
+- `404.html`/`index.html` both got a "Back to homepage" link (`href="/"`)
+  -- currently loops back to the same placeholder content since the two
+  files are intentionally identical, but will work correctly once a real
+  homepage exists
 - Nameservers switched from Porkbun to Cloudflare and fully activated;
   stale GitHub Pages A/AAAA records (leftover from before this migration)
   deleted from the Cloudflare DNS zone
