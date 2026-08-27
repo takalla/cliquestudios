@@ -21,6 +21,7 @@
   function buildPayload(eventType) {
     return {
       event_type: eventType,
+      hostname: window.location.hostname,
       path: window.location.pathname + window.location.search,
       referrer: document.referrer || "direct-or-unknown",
       user_agent: navigator.userAgent
