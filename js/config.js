@@ -19,7 +19,7 @@
 // No other code changes needed — 404.js picks this up automatically.
 // -----------------------------------------------------------------------
 window.CLIQUE_404_CONFIG = {
-  supabaseUrl: "", // e.g. "https://xxxxxxxxxxxx.supabase.co"
-  supabaseAnonKey: "", // the PUBLIC anon/publishable key — never the service_role key
+  supabaseUrl: "https://qkwqllrgvrpdkbtequdb.supabase.co",
+  supabaseAnonKey: "sb_publishable_1skvWTfq5oYplZmVSDvx_A_AcuHTD0W", // PUBLIC publishable key — never the service_role key
   table: "site_pings"
 };
