@@ -6,6 +6,10 @@
   "assets": {
     // This is a plain static site (no build step) -- index.html, 404.html,
     // css/, js/ all live at the repo root, so serve straight from here.
-    "directory": "."
+    "directory": ".",
+    // Explicitly serve 404.html (with a 404 status) for any path that
+    // doesn't match a real file. Not automatic for Workers static assets
+    // the way it was on classic Cloudflare Pages -- must be set.
+    "not_found_handling": "404-page"
   }
 }

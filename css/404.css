@@ -130,6 +130,17 @@ button {
   max-width: 400px;
 }
 
+.error-page__home-link {
+  font-size: 13px;
+  font-weight: 700;
+  color: #4f7cff; /* placeholder — accent color, matches eyebrow */
+  text-decoration: none;
+}
+
+.error-page__home-link:hover {
+  text-decoration: underline;
+}
+
 /* ---------- Footer ---------- */
 .error-page__footer {
   display: flex;
